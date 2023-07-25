@@ -1,0 +1,23 @@
+
+.button-fire {
+    background: $fire-gradient;
+    color: white;
+    width: 100%;
+    padding: 1rem;
+    border-radius: .7rem;
+
+    &:hover{
+      background: $fire-gradient-hover;
+    }
+}
+
+.btn-primary {
+    border-radius: 1em;
+    border: solid 0.2rem darken($orange, 10%);
+    background: $fire-gradient;
+
+    &:hover, &:focus, &:active {
+        background: $fire-gradient-hover;
+        border: solid 0.2rem darken($orange, 30%);
+    }
+}

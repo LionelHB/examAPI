@@ -1,0 +1,16 @@
+App\Entity\Nft:
+  nft_{1..120}:
+    name: "<userName()>"
+    owner: '@user_*->getName()'
+    creator: "<userName()>"
+    creationDate: '<dateTimeBetween("1998-07-05", "now")>'
+    dateFirstSale: '<dateTimeBetween(creationDate, "now")>'
+    dateLastSale: '<dateTimeBetween(dateFirstSale, "now")>'
+    identifyKey: '<word(17)>'
+    nftPath: "www.TODO.fr"
+    priceETH: <randomFloat(0, 3)>
+    priceEUR: 0
+    priceUSD: 0
+    isPublic: "<boolean(98)>"
+    quantity: "<numberBetween(1, 5)>"
+    description: "<sentence()>"

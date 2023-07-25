@@ -1,0 +1,5 @@
+App\Entity\Galery:
+  gallery_{1..300}: 
+    name: "<word()>"
+    isPublic: "<boolean(90)>"
+    user: '@user_*'

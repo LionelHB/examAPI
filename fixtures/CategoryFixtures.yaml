@@ -1,0 +1,9 @@
+App\Entity\Category:
+  category_1:
+    name: "higherCognitive"
+
+  category_2:
+    name: "logicalThinking"
+
+  category_3:
+    name: "sensoryMotorskills"

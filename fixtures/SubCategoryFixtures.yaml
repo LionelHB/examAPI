@@ -1,0 +1,48 @@
+App\Entity\SubCategory:
+  sub_category_1:
+    name: "creativity"
+    category: '@category_1'
+
+  sub_category_2:
+    name: "memory"
+    category: '@category_1'
+
+  sub_category_3:
+    name: "selectiveAttention"
+    category: '@category_1'
+
+  sub_category_4:
+    name: "strategicThinking"
+    category: '@category_1'
+
+  sub_category_5:
+    name: "cognitiveFlexibility"
+    category: '@category_2'
+
+  sub_category_6:
+    name: "decisionMaking"
+    category: '@category_2'
+
+  sub_category_7:
+    name: "logic"
+    category: '@category_2'
+
+  sub_category_8:
+    name: "spatialReasoning"
+    category: '@category_2'
+
+  sub_category_9:
+    name: "handEyeCoordination"
+    category: '@category_3'
+
+  sub_category_10:
+    name: "reactionRate"
+    category: '@category_3'
+
+  sub_category_11:
+    name: "resourceManagement"
+    category: '@category_3'
+
+  sub_category_12:
+    name: "visualPerception"
+    category: '@category_3'
