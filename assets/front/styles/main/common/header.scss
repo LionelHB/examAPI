@@ -1,7 +1,10 @@
 
 header {
-  background-color: $footer-background-color;
-  min-height: 120px;
+  background-color: $header_background_color;
+
+  p{
+    font-family: 'NeonEnergy', sans-serif;
+  }
 
   .main-container {
     background: $fire-gradient;

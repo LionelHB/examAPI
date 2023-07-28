@@ -2,12 +2,22 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AnthologyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AnthologyRepository::class)]
+#[ApiResource(
+    collectionOperations: [
+        'get'
+    ],
+    itemOperations: [
+        'get'
+    ],
+)]
 class Anthology
 {
     #[ORM\Id]
@@ -16,6 +26,7 @@ class Anthology
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['anthology:item'])]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'anthology', targetEntity: Nft::class)]

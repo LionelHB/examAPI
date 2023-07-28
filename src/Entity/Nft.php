@@ -2,29 +2,55 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\NftRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: NftRepository::class)]
+#[ApiResource(
+    collectionOperations: [
+        'get', 'post'
+    ],
+    itemOperations: [
+        'get', 'put', 'delete'
+    ],
+)]
+
 class Nft
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['nft:list', 'nft:item'])]
     private ?int $id = null;
 
+    // **
+
     #[ORM\Column(length: 255)]
+    #[Groups(['nft:list', 'nft:item', 'comment:post'])]
     private ?string $name = null;
 
+    // **
+
     #[ORM\Column(length: 255)]
+    #[Groups(['nft:item'])]
     private ?string $owner = null;
 
+    // **
+
     #[ORM\Column(length: 255)]
+    #[Groups(['nft:item'])]
     private ?string $creator = null;
 
+    // **
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Groups(['nft:item'])]
     private ?\DateTimeInterface $creationDate = null;
+
+    // **
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateFirstSale = null;
@@ -35,17 +61,30 @@ class Nft
     #[ORM\Column(length: 255)]
     private ?string $identifyKey = null;
 
+    // **
+
     #[ORM\Column(length: 255)]
+    #[Groups(['nft:list', 'nft:item'])]
     private ?string $nftPath = null;
 
-    #[ORM\Column]
-    private ?float $priceETH = null;
+    // **
 
     #[ORM\Column]
+    #[Groups(['nft:list', 'nft:item'])]
+    private ?float $priceETH = null;
+
+    // **
+
+    #[ORM\Column]
+    #[Groups(['nft:item'])]
     private ?float $priceEUR = null;
 
     #[ORM\Column]
+    #[Groups(['nft:item'])]
     private ?float $priceUSD = null;
+
+    // **
+
 
     #[ORM\Column]
     private ?bool $isPublic = null;
@@ -53,7 +92,10 @@ class Nft
     #[ORM\Column]
     private ?int $quantity = null;
 
+    // **
+
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['nft:item'])]
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'nft')]
@@ -63,7 +105,10 @@ class Nft
     private ?Comment $comment = null;
 
     #[ORM\ManyToOne(inversedBy: 'nft')]
+    #[Groups(['nft:item'])]
     private ?SubCategory $subCategory = null;
+
+    
 
     public function getId(): ?int
     {

@@ -2,13 +2,28 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ApiResource(
+    collectionOperations: [
+        'get', 'post' => [
+            'denormalization_context' => [
+                'groups' => ['user:post']
+            ]
+        ]
+    ],
+    itemOperations: [
+        'get', 'put', 'delete'
+    ],
+)]
 class User
 {
     #[ORM\Id]
@@ -23,6 +38,7 @@ class User
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['user:list', 'nft:list', 'nft:item', 'comment:post', 'gallery:post'])]
     private ?string $nickName = null;
 
     #[ORM\Column(length: 255)]
@@ -38,6 +54,7 @@ class User
     private ?\DateTimeInterface $dateBirthDay = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Gallery::class)]
+    #[Groups(['user:item', 'nft:item'])]
     private Collection $galleries;
 
     public function __construct()

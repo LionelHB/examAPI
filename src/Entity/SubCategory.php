@@ -2,12 +2,25 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\SubCategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SubCategoryRepository::class)]
+#[ApiResource(
+    collectionOperations: [
+        'get', 'post' => [
+            'denormalization_context' => [
+                'groups' => ['subCategory:post']]
+        ]
+    ],
+    itemOperations: [
+        'get', 'put', 'delete'
+    ],
+)]
 class SubCategory
 {
     #[ORM\Id]
@@ -22,6 +35,7 @@ class SubCategory
     private Collection $nft;
 
     #[ORM\ManyToOne(inversedBy: 'subCategories')]
+    #[Groups(['nft:list', 'nft:item'])]
     private ?Category $category = null;
 
     public function __construct()

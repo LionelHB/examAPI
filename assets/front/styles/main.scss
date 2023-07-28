@@ -2,12 +2,11 @@
 @import "../../shared/styles/main";
 
 @import "main/variables";
-@import "main/home";
+@import "../../fonts/fonts";
 
-@import "main/cards/game";
-@import "main/cards/review";
+@import "main/home";
 
 @import "main/common/footer";
 @import "main/common/header";
+@import "main/common/layout";
 
-@import "main/pages/game";

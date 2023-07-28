@@ -1,8 +1,0 @@
-App\Entity\Role:
-  role_admin:
-    name: role_admin
-    level: 1
-
-  role_user:
-    name: role_user
-    level: 3

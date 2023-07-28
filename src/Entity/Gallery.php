@@ -2,10 +2,24 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\GalleryRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: GalleryRepository::class)]
+#[ApiResource(
+    collectionOperations: [
+        'get', 'post' => [
+            'denormalization_context' => [
+                'groups' => ['gallery:post']]
+        ]
+    ],
+    itemOperations: [
+        'get', 'put', 'delete'
+    ],
+)]
+
 class Gallery
 {
     #[ORM\Id]
@@ -14,12 +28,14 @@ class Gallery
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['nft:item'])]
     private ?string $name = null;
 
     #[ORM\Column]
     private ?bool $isPublic = null;
 
     #[ORM\ManyToOne(inversedBy: 'galleries')]
+    #[Groups(['nft:item'])]
     private ?User $user = null;
 
     public function getId(): ?int
